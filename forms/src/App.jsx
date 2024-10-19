@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import InteractiveWelcome from './InteractiveWelcome'
+import Login from './Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,6 +9,7 @@ function App() {
   return (
     <>
       <InteractiveWelcome></InteractiveWelcome>
+      <Login></Login>
     </>
   )
 }
