@@ -5,46 +5,43 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-  const Username = (e) => {
+  const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
 
-  const Password = (e) => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  const Remember = (e) => {
+  const handleRememberChange = (e) => {
     setRemember(e.target.checked);
   };
 
-  const LoginClick = () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    
     onLogin({ username, password, remember });
+
+
   };
 
-  const LoginDisabled = username === "" || password === "";
+  const isLoginDisabled = username === "" || password === "";
 
-  const Submit = (e) => {
-    e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
-    console.log("Remember Me:", remember);
-  };
-
-  const ResetClick = () => {
-    setUsername("");
-    setPassword("");
-    setRemember(false);
+  const handleResetClick = () => {
+    setUsername("");  
+    setPassword("");  
+    setRemember(false);  
   };
 
   return (
-    <form onSubmit={Submit}>
+    <form onSubmit={handleLogin}>
       <div>
         <label>
           Username:
           <input
             type="text"
             value={username}
-            onChange={Username}
+            onChange={handleUsernameChange}
             placeholder="Enter username"
           />
         </label>
@@ -56,7 +53,7 @@ function Login({ onLogin }) {
           <input
             type="password"
             value={password}
-            onChange={Password}
+            onChange={handlePasswordChange}
             placeholder="Enter password"
           />
         </label>
@@ -64,17 +61,25 @@ function Login({ onLogin }) {
 
       <div>
         <label>
-          <input type="checkbox" checked={remember} onChange={Remember} />
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={handleRememberChange}
+          />
           Remember Me
         </label>
       </div>
 
       <div>
-        <button type="button" onClick={LoginClick} disabled={LoginDisabled}>
+        <button type="submit" disabled={isLoginDisabled}>
           Login
         </button>
 
-        <button type="button" onClick={ResetClick}>
+        <button
+          type="button"
+          onClick={handleResetClick}
+          style={{ marginLeft: "10px" }}
+        >
           Reset
         </button>
       </div>
