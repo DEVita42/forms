@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Login() {
+function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
@@ -28,6 +28,12 @@ function Login() {
     console.log("Username:", username);
     console.log("Password:", password);
     console.log("Remember Me:", remember);
+  };
+
+  const ResetClick = () => {
+    setUsername("");
+    setPassword("");
+    setRemember(false);
   };
 
   return (
@@ -66,6 +72,10 @@ function Login() {
       <div>
         <button type="button" onClick={LoginClick} disabled={LoginDisabled}>
           Login
+        </button>
+
+        <button type="button" onClick={ResetClick}>
+          Reset
         </button>
       </div>
     </form>
